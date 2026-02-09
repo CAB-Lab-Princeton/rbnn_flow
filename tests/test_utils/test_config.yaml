@@ -1,0 +1,8 @@
+Person:
+  Name: 'Justice'
+  DOB: '08-17-1994'
+  Age: '31'
+
+Univerity:
+  undergraduate: 'MIT'
+  graduate: 'Princeton'

@@ -1,0 +1,18 @@
+dataset:
+  data_dir: "/n/fs/masonj687/data/rbnn_gravity/gf-vae/3dpend_with_gt/03312025/data.npy"
+  labeled: True
+  supervised: True
+  seq_len: 10
+  test_split: 0.2
+  val_split: 0.1
+
+dataloader:
+  batch_size: 32
+  num_workers: 24
+  shuffle: True
+  pin_memory: True
+  drop_last: True
+
+training:
+  seed: 0
+
