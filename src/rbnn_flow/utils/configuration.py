@@ -1,4 +1,5 @@
 import yaml
+import os
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -8,6 +9,9 @@ class Config:
     """
     def __init__(self, **entries):
         self.__dict__.update(entries)
+
+    def __post_init__(self):
+        os.makedirs(self.output_dir, exist_ok=True)
 
 def load_config(config_file_path: str| Path):
     """"""

@@ -27,7 +27,7 @@ def shuffle_and_split(raw_data: np.ndarray, test_split: float, val_split: float)
     
     np.random.shuffle(raw_data)
         
-    rd_split = np.split(np.float64(raw_data), [train_len, train_len + val_len, train_len + val_len + test_len], axis=0)
+    rd_split = np.split(np.float64(raw_data), [train_len, train_len + val_len], axis=0)
     return rd_split
 
 # Functions to construct datasets

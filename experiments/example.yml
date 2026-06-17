@@ -1,0 +1,50 @@
+# --- Dataset paths (update to match your Kaggle input directory) ---
+dataset_root: str = "/kaggle/input/ts-satfire"
+train_csv:    str = "/kaggle/input/ts-satfire/roi/train.csv"
+val_csv:      str = "/kaggle/input/ts-satfire/roi/val.csv"
+test_csv:     str = "/kaggle/input/ts-satfire/roi/test.csv"
+output_dir:   str = "/kaggle/working/outputs"
+
+# --- Temporal configuration ---
+T_hist: int = 3       # Number of historical (observed) days
+T_fut:  int = 3       # Number of future (prediction) days
+T_total: int = 6      # T_hist + T_fut
+
+# --- Spatial configuration ---
+img_size:  int = 128  # Spatial crop size (H x W)
+patch_size: int = 16  # ViT patch size (must divide img_size)
+
+# --- Channel configuration ---
+total_channels:    int = 27
+viirs_channels:    int = 8    # Channels 0-7 (1-indexed: 1-8)
+exog_channels:     int = 19   # Channels 8-26 (1-indexed: 9-27)
+band14_channel_idx: int = 3   # 0-indexed: Band I4 is channel index 3
+num_classes:       int = 3    # 0=background, 1=old burn, 2=active fire
+
+# --- Model architecture ---
+cnn_base_channels: int = 64
+d_model:           int = 512  # Transformer embedding dimension
+nhead:             int = 8    # Number of attention heads
+num_enc_layers:    int = 4    # Transformer encoder depth
+num_dec_layers:    int = 4    # Transformer decoder depth
+dim_feedforward:   int = 2048
+dropout:           float = 0.1
+
+# --- Training ---
+epochs:         int = 50
+batch_size:     int = 8
+learning_rate:  float = 3e-4
+weight_decay:   float = 1e-4
+grad_clip_norm: float = 1.0
+num_workers:    int = 4
+use_amp:        bool = True
+use_data_parallel: bool = True
+
+# --- Loss weights per class [background, old_burn, active_fire] ---
+# Active fire (Class 2) receives the highest weight to penalize misses.
+class_weights: List[float] = field(default_factory=lambda: [0.1, 1.0, 50.0])
+
+# --- Evaluation ---
+n_best_samples:   int = 3
+n_worst_samples:  int = 3
+n_random_samples: int = 3

@@ -1,0 +1,3 @@
+[submodule "gf-vae-remake"]
+	path = gf-vae-remake
+	url = https://github.com/CAB-Lab-Princeton/gf-vae-remake.git
